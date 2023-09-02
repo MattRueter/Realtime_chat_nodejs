@@ -1,0 +1,17 @@
+html 
+    include ./mixins/msg_mixin
+    head 
+        title="Chat"
+        style 
+            include ./css/styles.css
+    body    
+        h1= "Realtime Chat App."
+        main(id="container")
+            
+            ul(id="chatbox")
+                each val in messages
+                    +msg(val)
+            
+            form(id="msgform" method="POST" action="/")  
+                textarea(name="message")
+                input(type="submit" value="send")
