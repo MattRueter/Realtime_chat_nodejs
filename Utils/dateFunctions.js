@@ -5,7 +5,7 @@ function createDate () {
     let month = formatDate(date.getMonth(), "month")
     let time = date.getHours() +":"+ formatDate(date.getMinutes(), "time"); // e.g. 14:32
 
-    let dateString = `${dayOfWeek} ${month} ${day} at ${time}`;
+    let dateString = `${dayOfWeek}, ${month} ${day} at ${time}`;
     return dateString;    
 }
 function formatDate(number, dateType){
@@ -23,9 +23,6 @@ function formatDate(number, dateType){
         number += "th"
     }else if(dateType === "time" && number < 10){
         number = "0"+number;
-    }
-    else{
-        console.log("Something's wrong.")
     }
     return number
 };

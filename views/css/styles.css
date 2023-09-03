@@ -21,6 +21,7 @@ body{
 }
 li{
     background-color: rgb(179, 179, 255);
+    word-wrap: break-word;
     list-style-type: none;
     border: 1px solid black;
     border-radius: 5px;

@@ -4,7 +4,8 @@ html
         title="Chat"
         style 
             include ./css/styles.css
-    body    
+        script(type='text/javascript', src='/socket.io/socket.io.js').
+    body 
         h1= "Realtime Chat App."
         main(id="container")
             
@@ -12,6 +13,11 @@ html
                 each val in messages
                     +msg(val)
             
-            form(id="msgform" method="POST" action="/")  
-                textarea(name="message")
+            form(id="msgform" ) 
+                input(id="nameinput" type="text" name="name", placeholder="sign your name") 
+                textarea(id="msgtextarea" name="message")
                 input(type="submit" value="send")
+        script  
+            include ./mySocket.js
+
+<!-- method="POST" action="/" -->
