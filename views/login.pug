@@ -1,0 +1,14 @@
+html 
+    head    
+        title="Chatterbox login"
+        style
+            include ./css/styles.css 
+
+    body
+        main(id="loginpage" class="container")
+            div(class="innercontainer")
+                h1="Login"
+                form( id="loginform")
+                    input(id="username", class="logininput" type="text" name="username" placeholder="user name")
+                    input(id="password", class="logininput" type="password" name="password" placeholder="password")
+                    input(id="loginbutton" class="formbutton" type="submit")
