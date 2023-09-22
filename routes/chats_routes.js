@@ -4,18 +4,16 @@ const messages = require("../DB/messages.js");
 const chatRouter = express.Router();
 
 
-
-chatRouter.post("/", (req,res) =>{
-    const msg = req.body.message;
-    const date = createDate();
-    const user = req.body.name
-    const newMessage ={ user:user, message:msg, date:date };
-    messages.push(newMessage);
-    
-    res.render("index",{
-        messages: messages
-    })
-    
+chatRouter.get("/", (req,res) => {
+    if(!req.isAuthenticated()){
+        res.redirect("login/error")
+    }else if(req.isAuthenticated()){
+        const user = req.session.passport.user.username;
+        res.render("index",{
+            messages: messages,
+            user: user
+        })
+    }
 });
 
 module.exports = chatRouter;
