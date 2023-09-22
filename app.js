@@ -5,18 +5,15 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const morgan = require("morgan");
-const {createDate, formatDate } = require("./Utils/dateFunctions");
+const {createDate, formatDate } = require("./Utils/dateFunctions.js");
+const chatRouter  = require("./routes/chats_routes.js");
+const messages = require("./DB/messages.js");
 
 const PORT = 3000;
 
-//DATA
-const messages =[
-    {user:"Matt", message: "hello", date:"September 2nd 14:30"},
-    {user:"Mike", message: "hey", date:"September 2nd 14:32"},
-    {user:"Matt", message: "I'm hungry", date:"September 2nd 14:35"},
-];
 
 //MIDDLEWARE and SETUP---------------------------------------------------------------------------------
+
 //templates
 app.set('view engine', 'pug');
 
@@ -29,25 +26,18 @@ app.use(express.static("/"))
 app.use(morgan("tiny"));
 //------------------------------------------------------------------------------------------------------
 
-//routes
+//ROUTES
 app.get("/", (req,res) => {
     res.render("index",{
         messages: messages,
     })
 });
-
-app.post("/", (req,res) =>{
-    const msg = req.body.message;
-    const date = createDate();
-    const user = req.body.name
-    const newMessage ={ user:user, message:msg, date:date };
-    messages.push(newMessage);
-    
-    res.render("index",{
-        messages: messages
-    })
-    
+app.get("/login", (req,res) =>{
+    res.render("login")
 });
+app.use("/chats", chatRouter);
+
+
 
 //SOCKET connection.
 io.on("connection", (socket) =>{
