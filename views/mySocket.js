@@ -20,21 +20,25 @@ form.addEventListener("submit", function(e){
 // Then push it to the mock DB
 // Then do the DOM stuff as is.
 socket.on("chat message", function(msg){
-    const msgContainer = document.createElement("div");
+    const msgContainer = document.createElement("li");
     const pdate = document.createElement("p");
     const puser = document.createElement("p");
-    const li = document.createElement("li");
+    const pmsg = document.createElement("p");
 
     pdate.textContent = msg.date;
     puser.textContent = msg.user;
-    li.textContent =msg.message;
+    pmsg.textContent =msg.message;
+    
     
     msgContainer.appendChild(pdate);
     msgContainer.appendChild(puser);
-    msgContainer.appendChild(li);
+    msgContainer.appendChild(pmsg);
 
-    msgContainer.classList.add("message");
-    
+    msgContainer.classList.add("messageContainer");
+    pdate.classList.add("msgStamp");
+    puser.classList.add("msgStamp");
+    pmsg.classList.add("messageContent")  
+
     chatbox.appendChild(msgContainer);
 
     window.scrollTo(0, document.body.scrollHeight);

@@ -4,40 +4,92 @@ body{
     flex-direction: column;
     align-items: center;
 }
-#container{
-    border:1px solid black;
-    background-color: white;
-    width:400px;
-    padding:1%;
-}
-/*chatbox is the UL*/
-#chatbox{
-    background-color: rgb(252, 214, 255);
-    border:1px solid blue;
-    border-radius: 5px;
-    display:flex;
-    flex-direction: column;
-    align-items:flex-start;
-}
-li{
-    background-color: rgb(179, 179, 255);
-    word-wrap: break-word;
-    list-style-type: none;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding:1%;
-}
-.message{
-    margin:2%;
-    width:70%;
-}
-.message > p{
-    font-size: smaller;
-    color:rgb(156, 154, 154);
-    margin:0%;
-}
 form{
     display:flex;
     flex-direction: column;
     align-items: center;
+}
+.formbutton{
+    border:none;
+    height:50px;
+    width:40%;
+    font-size: larger;
+    background-color:#fabcff
+}
+.formbutton:hover{
+    background-color: #f1c7f5;
+}
+.container{
+    background-color: rgb(199, 199, 255);;
+    width:90%;
+    padding:1%;
+}
+
+#msgform > *{
+    margin:3%;
+}
+#msgtextarea{
+    resize: none;
+    font-size: 20px;
+    background-color: #fcd6ff;
+    border: 1px solid blue;
+    border-radius: 10px;;
+    width:70%;
+    height:100px;
+}
+
+.innercontainer{
+    background-color: rgb(252, 214, 255);
+    border:1px solid blue;
+    border-radius: 15px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+/*MESSAGES*/
+.messageContent{
+    background-color: rgb(179, 179, 255);
+    text-decoration-color: black;
+    word-wrap: break-word;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding:1%;
+    margin:0%;
+}
+/*container for message block*/
+.messageContainer{
+    list-style-type: none;
+    margin:2%;
+    width:60%;
+}
+.msgStamp{
+    font-size: smaller;
+    color:rgb(156, 154, 154);
+    margin:0%;
+}
+
+/*LOGIN*/
+#loginpage{
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#loginform{
+    width:100%;
+}
+#loginform > *{
+    margin:3%;
+}
+.logininput{
+    width:50%;
+    height:50px;
+    font-size: large;
+}
+@media screen and (min-width: 1000px){
+.container{
+    width:50%;
+}
+
 }

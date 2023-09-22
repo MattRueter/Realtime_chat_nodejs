@@ -6,18 +6,15 @@ html
             include ./css/styles.css
         script(type='text/javascript', src='/socket.io/socket.io.js').
     body 
-        h1= "Realtime Chat App."
-        main(id="container")
+        main(class="container")
             
-            ul(id="chatbox")
+            ul(id="chatbox" class="innercontainer")
                 each val in messages
                     +msg(val)
             
             form(id="msgform" ) 
                 input(id="nameinput" type="text" name="name", placeholder="sign your name") 
                 textarea(id="msgtextarea" name="message")
-                input(type="submit" value="send")
+                input(type="submit" class="formbutton" value="send")
         script  
             include ./mySocket.js
-
-<!-- method="POST" action="/" -->

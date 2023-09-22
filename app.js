@@ -4,19 +4,19 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+const passport = require("passport");
+const session = require("express-session");
 const morgan = require("morgan");
-const {createDate, formatDate } = require("./Utils/dateFunctions");
+const {createDate, formatDate } = require("./Utils/dateFunctions.js");
+const chatRouter  = require("./routes/chats_routes.js");
+const loginRouter = require("./routes/login_route.js");
+const messages = require("./DB/messages.js");
 
 const PORT = 3000;
-
-//DATA
-const messages =[
-    {user:"Matt", message: "hello", date:"September 2nd 14:30"},
-    {user:"Mike", message: "hey", date:"September 2nd 14:32"},
-    {user:"Matt", message: "I'm hungry", date:"September 2nd 14:35"},
-];
+const store = new session.MemoryStore();
 
 //MIDDLEWARE and SETUP---------------------------------------------------------------------------------
+
 //templates
 app.set('view engine', 'pug');
 
@@ -28,26 +28,29 @@ app.use(
 app.use(express.static("/"))
 app.use(morgan("tiny"));
 //------------------------------------------------------------------------------------------------------
+//SESSION-----------------------------------------------------------------------------------------------
+app.use(
+    session({
+        secret: "M1414QRS",
+        resave:false,
+        saveUninitialized:false,
+        store,
+    })
+)
+//PASSPORT MOUNTING -------------------------------------------------------------------------------------
+app.use(passport.initialize());
+app.use(passport.session());
 
-//routes
+
+
+//ROUTES
 app.get("/", (req,res) => {
-    res.render("index",{
-        messages: messages,
-    })
+    res.redirect("/login")
 });
+app.use("/login", loginRouter)
+app.use("/chats", chatRouter);
 
-app.post("/", (req,res) =>{
-    const msg = req.body.message;
-    const date = createDate();
-    const user = req.body.name
-    const newMessage ={ user:user, message:msg, date:date };
-    messages.push(newMessage);
-    
-    res.render("index",{
-        messages: messages
-    })
-    
-});
+
 
 //SOCKET connection.
 io.on("connection", (socket) =>{

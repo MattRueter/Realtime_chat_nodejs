@@ -1,5 +1,5 @@
 mixin msg(val)
-    div(class="message")
-        p= val.date
-        p= val.user
-        li= val.message
+    li(class="messageContainer")
+        p(class="msgStamp")= val.date
+        p(class="msgStamp")= val.user
+        p(class="messageContent")= val.message
