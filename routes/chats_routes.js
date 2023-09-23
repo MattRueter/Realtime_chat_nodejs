@@ -5,6 +5,7 @@ const chatRouter = express.Router();
 
 
 chatRouter.get("/", (req,res) => {
+
     if(!req.isAuthenticated()){
         res.redirect("login/error")
     }else if(req.isAuthenticated()){

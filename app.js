@@ -20,6 +20,7 @@ const SECRET = process.env.SECRET
 const store = new session.MemoryStore();
 
 //MIDDLEWARE and SETUP---------------------------------------------------------------------------------
+
 //templates
 app.set('view engine', 'pug');
 //middleware
@@ -36,7 +37,6 @@ app.use(helmet({
         }
     }
 }))
-//------------------------------------------------------------------------------------------------------
 
 //SESSION-----------------------------------------------------------------------------------------------
 app.use(
@@ -58,7 +58,6 @@ app.get("/", (req,res) => {
 });
 app.use("/login", loginRouter)
 app.use("/chats", chatRouter);
-
 
 
 //SOCKET connection.

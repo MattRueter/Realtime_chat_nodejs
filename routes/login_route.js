@@ -12,6 +12,7 @@ loginRouter.use(usePassportStrategy);
 loginRouter.get("/", (req,res) =>{
     res.render("login")
 });
+
 loginRouter.get("/error", (req,res) =>{
     res.render("login",{
         errormessage:"You may have mistyped darling."
