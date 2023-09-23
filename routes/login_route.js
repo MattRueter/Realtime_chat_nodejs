@@ -13,8 +13,13 @@ loginRouter.get("/", (req,res) =>{
     res.render("login")
 });
 
+loginRouter.get("/error", (req,res) =>{
+    res.render("login",{
+        errormessage:"You may have mistyped darling."
+    })
+});
 loginRouter.post("/", 
-    passport.authenticate("local", {failureRedirect: "/login"}),
+    passport.authenticate("local", {failureRedirect: "/login/error"}),
     (req, res) =>{
         res.redirect("/chats")
     }

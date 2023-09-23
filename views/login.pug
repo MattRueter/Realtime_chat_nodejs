@@ -8,6 +8,7 @@ html
         main(id="loginpage" class="container")
             div(class="innercontainer")
                 h1="Login"
+                p=errormessage
                 form( id="loginform" action="/login" method="POST" )
                     input(id="username", class="logininput" type="text" name="username"  value=""  placeholder="user name")
                     input(id="password", class="logininput" type="password" name="password" value="" placeholder="password")

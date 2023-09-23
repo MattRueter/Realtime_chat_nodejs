@@ -11,11 +11,10 @@ form.addEventListener("submit", function(e){
     if(textArea.value){
         const msg=[input.value, textArea.value];
         socket.emit("chat message", msg);
-        input.value = "";
         textArea.value = "";
     }
 });
-//this is formatting the message and adding to DOM
+// This is formatting the message and adding to DOM
 // On the server side we can format it (like before)
 // Then push it to the mock DB
 // Then do the DOM stuff as is.

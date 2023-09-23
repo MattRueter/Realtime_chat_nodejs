@@ -13,7 +13,7 @@ html
                     +msg(val)
             
             form(id="msgform" ) 
-                input(id="nameinput" type="text" name="name", placeholder="sign your name") 
+                input(id="nameinput" type="hidden" name="name", value=user placeholder=user)
                 textarea(id="msgtextarea" name="message")
                 input(type="submit" class="formbutton" value="send")
         script  
